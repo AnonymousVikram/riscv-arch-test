@@ -16,13 +16,13 @@ PRIVHEADERSDIR := $(PRIVDIR)/headers
 PRIVDIR64      := $(PRIVDIR)/rv64
 PRIVDIR32      := $(PRIVDIR)/rv32
 
-TEMPLATEDIR := templates
-TESTGEN_SRC_DIR := generators/tests/testgen/src/testgen
-COVERGROUPGEN_SRC_DIR := generators/coverage/templates
-TESTGEN_DEPS := $(wildcard $(TESTGEN_SRC_DIR)/* $(TESTGEN_SRC_DIR)/**/*)
-COVERGROUPGEN_DEPS := $(wildcard $(COVERGROUPGEN_SRC_DIR)/* $(COVERGROUPGEN_SRC_DIR)/**)
-TESTPLANS_DIR	:= testplans
-TESTPLANS := $(wildcard $(TESTPLANS_DIR)/*.csv $(TESTPLANS_DIR)/**/*.csv)
+TEMPLATEDIR       := templates
+TEST_TEMPLATE_DIR := generators/tests/templates
+COV_TEMPLATE_DIR  := generators/coverage/templates
+TEST_TEMPLATES    := $(wildcard $(TEST_TEMPLATE_DIR)/*.S $(TEST_TEMPLATE_DIR)/**/*.S)
+COV_TEMPLATES     := $(wildcard $(COV_TEMPLATE_DIR)/*.txt $(COV_TEMPLATE_DIR)/**/*.txt)
+TESTPLANS_DIR		  := testplans
+TESTPLANS         := $(wildcard $(TESTPLANS_DIR)/*.csv $(TESTPLANS_DIR)/**/*.csv)
 
 STAMP_DIR := $(WORKDIR)/stamps
 
@@ -39,39 +39,40 @@ endif
 
 ###### Test compilation targets ######
 .PHONY: elfs
-elfs: generate-makefiles-dut
+elfs: generate-makefiles-dut Makefile
 	$(MAKE) -C $(WORKDIR) compile
 
 .PHONY: generate-makefiles-dut
 generate-makefiles-dut: # too many dependencies to track; always regenerate Makefile
+	$(MAKE) tests
 	$(UV_RUN) act $(CONFIG_FILE) --workdir $(WORKDIR) --test-dir $(TESTDIR)
 
 .PHONY: clean
-clean:
+clean: clean-tests clean-ref
 	rm -rf $(WORKDIR)
 
 ###### Test generation targets ######
 .PHONY: covergroupgen
 covergroupgen: $(STAMP_DIR)/covergroupgen.stamp
-$(STAMP_DIR)/covergroupgen.stamp: generators/coverage/covergroupgen.py $(COVERGROUPGEN_DEPS) $(TESTPLANS) | $(STAMP_DIR)
+$(STAMP_DIR)/covergroupgen.stamp: generators/coverage/covergroupgen.py $(COV_TEMPLATES) $(TESTPLANS) Makefile | $(STAMP_DIR)
 	$(UV_RUN) generators/coverage/covergroupgen.py
 	touch $@
 
 .PHONY: testgen
 testgen:  $(STAMP_DIR)/testgen.stamp
-$(STAMP_DIR)/testgen.stamp: $(TESTGEN_DEPS) $(TESTPLANS) | $(STAMP_DIR)
-	$(UV_RUN) testgen testplans -o tests -e I
+$(STAMP_DIR)/testgen.stamp: $(TEST_TEMPLATES) Makefile | $(STAMP_DIR)
+	$(UV_RUN) testgen testplans -o tests -e Zca
 	rm -rf $(SRCDIR64)/E $(SRCDIR32)/E
 	touch $@
 
 .PHONY: privheaders
 privheaders: $(STAMP_DIR)/csrtests.stamp $(STAMP_DIR)/illegalinstrtests.stamp
 
-$(STAMP_DIR)/csrtests.stamp: generators/tests/scripts/csrtests.py | $(PRIVHEADERSDIR) $(STAMP_DIR)
+$(STAMP_DIR)/csrtests.stamp: generators/tests/scripts/csrtests.py Makefile | $(PRIVHEADERSDIR) $(STAMP_DIR)
 	$(UV_RUN) generators/tests/scripts/csrtests.py
 	touch $@
 
-$(STAMP_DIR)/illegalinstrtests.stamp: generators/tests/scripts/illegalinstrtests.py | $(PRIVHEADERSDIR) $(STAMP_DIR)
+$(STAMP_DIR)/illegalinstrtests.stamp: generators/tests/scripts/illegalinstrtests.py Makefile | $(PRIVHEADERSDIR) $(STAMP_DIR)
 	$(UV_RUN) generators/tests/scripts/illegalinstrtests.py
 	touch $@
 
@@ -90,15 +91,17 @@ $(PRIVHEADERSDIR) $(STAMP_DIR):
 ###### Coverage targets ######
 .PHONY: generate-makefiles-ref
 generate-makefiles-ref: # too many dependencies to track; always regenerate Makefile
+	$(MAKE) tests
 	$(UV_RUN) act $(REF_CONFIG_FILES) --workdir $(REF_WORKDIR) --test-dir $(TESTDIR) --coverage
 .PHONY: coverage
 
-coverage: generate-makefiles-ref
+coverage: generate-makefiles-ref Makefile
 	$(MAKE) -C $(REF_WORKDIR) coverage
 
 .PHONY: clean-ref
 clean-ref:
-	rm -rf $(REF_WORKDIR)
+	rm -rf $(REF_WORKDIR)/common $(REF_WORKDIR)/**/coverage $(REF_WORKDIR)/**/elfs $(REF_WORKDIR)/**/build $(REF_WORKDIR)/**/reports $(REF_WORKDIR)/**/Makefile $(REF_WORKDIR)/stamps
+	rm -rf temp-tests/rv64 temp-tests/rv32
 
 # Dev targets
 .PHONY: lint
