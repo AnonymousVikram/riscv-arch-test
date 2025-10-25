@@ -3,8 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
 
 # Directories and files
-CONFIG_FILE ?= configs/duts/cvw/cvw-rv64gc/test_config.yaml configs/duts/cvw/cvw-rv32gc/test_config.yaml
-REF_CONFIG_FILES ?= configs/ref/sail-rv64gc/test_config.yaml configs/ref/sail-rv32gc/test_config.yaml
+CONFIG_FILE ?= configs/duts/cvw/cvw-rv64gc/test_config.yaml
+REF_CONFIG_FILES ?= configs/ref/sail-rv64gc/test_config.yaml
 WORKDIR     ?= work
 REF_WORKDIR ?= work-ref
 
@@ -16,13 +16,13 @@ PRIVHEADERSDIR := $(PRIVDIR)/headers
 PRIVDIR64      := $(PRIVDIR)/rv64
 PRIVDIR32      := $(PRIVDIR)/rv32
 
-TEMPLATEDIR       := templates
-TEST_TEMPLATE_DIR := generators/tests/templates
-COV_TEMPLATE_DIR  := generators/coverage/templates
-TEST_TEMPLATES    := $(wildcard $(TEST_TEMPLATE_DIR)/*.S $(TEST_TEMPLATE_DIR)/**/*.S)
-COV_TEMPLATES     := $(wildcard $(COV_TEMPLATE_DIR)/*.txt $(COV_TEMPLATE_DIR)/**/*.txt)
-TESTPLANS_DIR		  := testplans
-TESTPLANS         := $(wildcard $(TESTPLANS_DIR)/*.csv $(TESTPLANS_DIR)/**/*.csv)
+TEMPLATEDIR := templates
+TESTGEN_SRC_DIR := generators/tests/testgen/src/testgen
+COVERGROUPGEN_SRC_DIR := generators/coverage/templates
+TESTGEN_DEPS := $(wildcard $(TESTGEN_SRC_DIR)/* $(TESTGEN_SRC_DIR)/**/*)
+COVERGROUPGEN_DEPS := $(wildcard $(COVERGROUPGEN_SRC_DIR)/* $(COVERGROUPGEN_SRC_DIR)/**)
+TESTPLANS_DIR	:= testplans
+TESTPLANS := $(wildcard $(TESTPLANS_DIR)/*.csv $(TESTPLANS_DIR)/**/*.csv)
 
 STAMP_DIR := $(WORKDIR)/stamps
 
@@ -54,14 +54,14 @@ clean: clean-tests clean-ref
 ###### Test generation targets ######
 .PHONY: covergroupgen
 covergroupgen: $(STAMP_DIR)/covergroupgen.stamp
-$(STAMP_DIR)/covergroupgen.stamp: generators/coverage/covergroupgen.py $(COV_TEMPLATES) $(TESTPLANS) Makefile | $(STAMP_DIR)
+$(STAMP_DIR)/covergroupgen.stamp: generators/coverage/covergroupgen.py $(COVERGROUPGEN_DEPS) $(TESTPLANS) Makefile | $(STAMP_DIR)
 	$(UV_RUN) generators/coverage/covergroupgen.py
 	touch $@
 
 .PHONY: testgen
 testgen:  $(STAMP_DIR)/testgen.stamp
-$(STAMP_DIR)/testgen.stamp: $(TEST_TEMPLATES) Makefile | $(STAMP_DIR)
-	$(UV_RUN) testgen testplans -o tests -e Zca
+$(STAMP_DIR)/testgen.stamp: $(TESTGEN_DEPS) Makefile | $(STAMP_DIR)
+	$(UV_RUN) testgen testplans -o tests -e I
 	rm -rf $(SRCDIR64)/E $(SRCDIR32)/E
 	touch $@
 
@@ -100,8 +100,7 @@ coverage: generate-makefiles-ref Makefile
 
 .PHONY: clean-ref
 clean-ref:
-	rm -rf $(REF_WORKDIR)/common $(REF_WORKDIR)/**/coverage $(REF_WORKDIR)/**/elfs $(REF_WORKDIR)/**/build $(REF_WORKDIR)/**/reports $(REF_WORKDIR)/**/Makefile $(REF_WORKDIR)/stamps
-	rm -rf temp-tests/rv64 temp-tests/rv32
+	rm -rf $(REF_WORKDIR)
 
 # Dev targets
 .PHONY: lint
