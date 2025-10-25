@@ -15,7 +15,7 @@ def make_cp_uimm(instr_name: str, instr_type: str, coverpoint: str, test_data: T
     elif coverpoint.endswith("_4sp"):
         imm_mul = range(0, 256, 4)
     elif coverpoint.endswith("_8"):
-        imm_mul = range(0, 256, 8)8
+        imm_mul = range(0, 256, 8)
     elif coverpoint.endswith("_8sp"):
         imm_mul = range(0, 512, 8)
     elif coverpoint.endswith("_addi4spn"):

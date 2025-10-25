@@ -92,18 +92,21 @@ def generate_random_params(
     """
     params = InstructionParams(**fixed_params)
     exclude_regs = [0] if not allow_x0 else []
+    reg_range = range(0, 32)
+    if (instr_type in ["CA", "CS", "CLB", "CSB", "CLH", "CSH", "CU", "CB", "CBP", "CIW", "CL"]):
+        reg_range = range(8, 16)  # Compressed instructions use x8-x15
 
     # Fill in missing integer register parameters
     if params.rd is None:
-        params.rd = test_data.int_regs.get_register(exclude_reg=exclude_regs)
+        params.rd = test_data.int_regs.get_register(exclude_reg=exclude_regs, reg_range=reg_range)
 
     if params.rs1 is None:
-        params.rs1 = test_data.int_regs.get_register(exclude_reg=exclude_regs)
+        params.rs1 = test_data.int_regs.get_register(exclude_reg=exclude_regs, reg_range=reg_range)
     if params.rs1val is None:
         params.rs1val = gen_random_imm(test_data.xlen)
 
     if params.rs2 is None:
-        params.rs2 = test_data.int_regs.get_register(exclude_reg=exclude_regs)
+        params.rs2 = test_data.int_regs.get_register(exclude_reg=exclude_regs, reg_range=reg_range)
     if params.rs2val is None:
         params.rs2val = gen_random_imm(test_data.xlen)
 

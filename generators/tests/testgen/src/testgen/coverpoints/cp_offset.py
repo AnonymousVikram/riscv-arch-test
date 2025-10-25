@@ -20,21 +20,18 @@ def make_offset(instr_name: str, instr_type: str, coverpoint: str, test_data: Te
     if instr_type == "B":
         # B-type: beq, bne, blt, bge, bltu, bgeu - always branches when comparing x0 with x0
         branch_instr = f"{instr_name} x0, x0, 1b # backward branch"
-    elif instr_type == "JR":
-        # JR-type: jalr
-        branch_instr = f"{instr_name} x{params.rd}, x{params.rs2}, 0 # backward jalr"
-    elif instr_type in ["CJR", "CJALR"]:
+    elif instr_type in ["CR"]:
         # Compressed register jumps
         if instr_name == "c.jalr":
             test_data.int_regs.return_register(params.rd)
             test_data.int_regs.consume_registers([1])  # c.jalr always uses x1
             params.rd = 1
-        branch_instr = f"{instr_name} x{params.rs2} # backward jump"
+        branch_instr = f"{instr_name} x{params.rs2}"
     elif instr_type == "CJ":
         # Compressed unconditional jump
-        branch_instr = f"{instr_name} 1b # backward jump"
+        branch_instr = f"{instr_name} 1b"
     elif instr_type == "CB":
-        branch_instr = f"{instr_name} x{params.rs1}, 1b # backward branch"
+        branch_instr = f"{instr_name} x{params.rs1}, 1b"
     else:
         raise ValueError(f"cp_offset coverpoint not supported for instruction {instr_name} with type {instr_type}")
 
