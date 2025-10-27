@@ -1,4 +1,9 @@
-# testgen/instruction_formatters/cs_type.py
+##################################
+# cs_type.py
+#
+# harris@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
 
 from testgen.data.instruction_params import InstructionParams
 from testgen.data.test_data import TestData
@@ -13,6 +18,7 @@ def format_cs_type(
 ) -> tuple[list[str], list[str], list[str]]:
     """Format CS-type instruction."""
     assert params.rs1 is not None and params.rs1val is not None
+    assert params.rs2 is not None and params.rs2val is not None
     assert params.rd is not None
     assert params.immval is not None
     scaled_imm = modify_imm(params.immval, 5, signed=False) * 4

@@ -3,7 +3,7 @@
 # covergroupgen.py
 #
 # David_Harris@hmc.edu 15 August 2025
-# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+# SPDX-License-Identifier: Apache-2.0
 #
 # Generate functional covergroups for RISC-V instructions
 ##################################

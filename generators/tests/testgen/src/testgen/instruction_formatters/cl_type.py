@@ -1,4 +1,9 @@
-# testgen/instruction_formatters/cl_type.py
+##################################
+# cl_type.py
+#
+# harris@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
 
 from testgen.data.instruction_params import InstructionParams
 from testgen.data.test_data import TestData

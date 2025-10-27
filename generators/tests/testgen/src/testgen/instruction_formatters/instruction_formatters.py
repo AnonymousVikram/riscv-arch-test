@@ -1,4 +1,10 @@
-# testgen/instruction_formatters/instruction_formatters.py
+##################################
+# instruction_formatters.py
+#
+# jcarlin@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
+
 """Instruction formatter registry with automatic discovery."""
 
 from collections.abc import Callable

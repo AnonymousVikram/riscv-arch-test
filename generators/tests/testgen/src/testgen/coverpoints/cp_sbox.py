@@ -1,4 +1,10 @@
-# testgen/coverpoints/cp_sbox.py
+##################################
+# cp_sbox.py
+#
+# jcarlin@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
+
 """cp_sbox coverpoint generator."""
 
 from testgen.coverpoints.coverpoints import add_coverpoint_generator

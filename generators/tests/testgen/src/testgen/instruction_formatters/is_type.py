@@ -1,4 +1,9 @@
-# testgen/instruction_formatters/is_type.py
+##################################
+# is_type.py
+#
+# jcarlin@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
 
 from testgen.data.instruction_params import InstructionParams
 from testgen.data.test_data import TestData
