@@ -3,13 +3,10 @@
 //
 // Written: David_Harris@hmc.edu 21 March 2023
 // Adapted for to support both RV32 and RV64 David_Harris@hmc.edu
-// and a fork is moved from cvw/tests/coverage to cvw-arch-verif/tests/priv
+// and a fork is moved from cvw/tests/coverage to riscv-arch-test/tests/priv
 // because the files are diverging.
 //
 // Purpose: Initialize stack, handle interrupts, terminate test case
-//
-// A component of the CORE-V-WALLY configurable RISC-V project.
-// https://github.com/openhwgroup/cvw
 //
 // Copyright (C) 2021-23 Harvey Mudd College & Oklahoma State University
 //

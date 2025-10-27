@@ -6,7 +6,7 @@
 ##################################
 
 """
-Common utilities for cvw-arch-verif test generation.
+Common utilities for riscv-arch-test test generation.
 """
 
 from typing import Literal

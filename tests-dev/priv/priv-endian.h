@@ -7,9 +7,6 @@
 // Purpose: has the fuctions to store and load for endianness
 // Feed in: provide the endianness for the reads the writes and the privilege
 //
-// A component of the CORE-V-WALLY configurable RISC-V project.
-// https://github.com/openhwgroup/cvw
-//
 // Copyright (C) 2021-23 Harvey Mudd College & Oklahoma State University
 //
 // SPDX-License-Identifier: Apache-2.0

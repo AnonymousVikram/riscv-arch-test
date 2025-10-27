@@ -61,7 +61,7 @@ $(STAMP_DIR)/covergroupgen.stamp: generators/coverage/covergroupgen.py $(COVERGR
 .PHONY: testgen
 testgen:  $(STAMP_DIR)/testgen.stamp
 $(STAMP_DIR)/testgen.stamp: $(TESTGEN_DEPS) Makefile | $(STAMP_DIR)
-	$(UV_RUN) testgen testplans -o tests -e I
+	$(UV_RUN) testgen testplans -o tests -e M
 	rm -rf $(SRCDIR64)/E $(SRCDIR32)/E
 	touch $@
 

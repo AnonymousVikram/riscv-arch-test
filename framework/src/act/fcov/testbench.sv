@@ -12,7 +12,7 @@
 module testbench;
 
   // Load configuration
-  `include "cvw-arch-verif_coverage.svh"
+  `include "riscv-arch-test_coverage.svh"
 
   // Set up variable lengths
   `ifdef XLEN32
@@ -111,7 +111,7 @@ module testbench;
 
   // Load coverage model and connect to RVVI trace interface
   rvviTrace #(.XLEN(XLEN), .FLEN(FLEN), .VLEN(VLEN)) rvvi();
-  cvw_arch_verif cvw_arch_verif(rvvi);
+  riscv_arch_test riscv_arch_test(rvvi);
 
   // Sample an instruction from the trace file on each clock edge
   // Moves through full list of trace files

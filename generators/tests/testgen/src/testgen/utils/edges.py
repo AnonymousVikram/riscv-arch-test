@@ -6,7 +6,7 @@
 ##################################
 
 """
-Edge value definitions for cvw-arch-verif test generation.
+Edge value definitions for riscv-arch-test test generation.
 """
 
 # ==============================================================================

@@ -6,7 +6,7 @@
 ##################################
 
 """
-Read testplans for cvw-arch-verif test generation.
+Read testplans for riscv-arch-test test generation.
 """
 
 import csv

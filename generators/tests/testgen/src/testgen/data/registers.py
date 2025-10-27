@@ -6,7 +6,7 @@
 ##################################
 
 """
-Register management for cvw-arch-verif test generation.
+Register management for riscv-arch-test test generation.
 """
 
 import logging

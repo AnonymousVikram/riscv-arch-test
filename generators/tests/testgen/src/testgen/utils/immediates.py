@@ -6,7 +6,7 @@
 ##################################
 
 """
-Immediate value formatting for cvw-arch-verif test generation.
+Immediate value formatting for riscv-arch-test test generation.
 """
 
 from random import randint

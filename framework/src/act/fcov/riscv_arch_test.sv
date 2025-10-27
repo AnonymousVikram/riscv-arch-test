@@ -10,7 +10,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Load which extensions are supported in this configuration (from $WALLY/config/<config>/coverage.svh)
-`include "cvw-arch-verif_coverage.svh"
+`include "riscv-arch-test_coverage.svh"
 
 // Load disassembler
 `include "disassemble.svh"
@@ -18,7 +18,7 @@
 // Load the coverage classes
 `include "RISCV_coverage.svh"
 
-module cvw_arch_verif(rvviTrace rvvi);
+module riscv_arch_test(rvviTrace rvvi);
   string disass;
 
   // Connect coverage class to RVVI trace interface
@@ -26,7 +26,7 @@ module cvw_arch_verif(rvviTrace rvvi);
 
   initial begin
     riscvISACOV = new(rvvi);
-    $display("cvw_arch_verif: coverage initialized");
+    $display("riscv_arch_test: coverage initialized");
   end
 
   // Invoke the riscvISACOV sample function on each clock edge for the current instruction.
@@ -37,7 +37,7 @@ module cvw_arch_verif(rvviTrace rvvi);
       disass = disassemble(rvvi.insn[0][0]);
       riscvISACOV.sample(rvvi.trap[0][0], 0, 0, disass);
       `ifdef FCOV_VERBOSE
-        $display("cvw_arch_verif: sample taken for PC 0x%h instruction %s", rvvi.pc_rdata[0][0], disass);
+        $display("riscv_arch_test: sample taken for PC 0x%h instruction %s", rvvi.pc_rdata[0][0], disass);
       `endif
     end
   end
