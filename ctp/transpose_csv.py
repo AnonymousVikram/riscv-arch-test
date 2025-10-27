@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# transpose_csv.py
+# Convert wide CSV files into multiple AsciiDoc tables by transposing rows and columns.
+# David Harris
+# SPDX-License-Identifier: Apache-2.0
+
 import csv
 import os
 import sys

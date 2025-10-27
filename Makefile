@@ -1,10 +1,10 @@
 # Jordan Carlin jcarlin@hmc.edu
 # Sept 10, 2025
-# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+# SPDX-License-Identifier: Apache-2.0
 
 # Directories and files
-CONFIG_FILE ?= configs/duts/cvw/cvw-rv64gc/test_config.yaml
-REF_CONFIG_FILES ?= configs/ref/sail-rv64gc/test_config.yaml
+CONFIG_FILE ?= configs/duts/cvw/cvw-rv32gc/test_config.yaml
+REF_CONFIG_FILES ?= configs/ref/sail-rv32gc/test_config.yaml
 WORKDIR     ?= work
 REF_WORKDIR ?= work-ref
 

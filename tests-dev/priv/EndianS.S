@@ -5,7 +5,7 @@
 //
 // Purpose: Functional coverage tests for endianness in supervisor mode
 //
-// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+// SPDX-License-Identifier: Apache-2.0 WITH
 ///////////////////////////////////////////
 #include "WALLY-init-lib.h"
 #include "priv-endian.h"
