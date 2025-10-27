@@ -2,7 +2,7 @@
 # makefile_gen.py
 #
 # jcarlin@hmc.edu 6 Sept 2025
-# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+# SPDX-License-Identifier: Apache-2.0
 #
 # Generate Makefile for tests
 ##################################
