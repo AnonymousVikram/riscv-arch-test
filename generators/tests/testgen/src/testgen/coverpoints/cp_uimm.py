@@ -14,6 +14,8 @@ def make_cp_uimm(instr_name: str, instr_type: str, coverpoint: str, test_data: T
         uimm_vals = range(0, test_data.xlen)
     elif coverpoint.endswith("_5"):
         uimm_vals = range(0, 32)
+    elif coverpoint.endswith("_n0"):
+        uimm_vals = range(1, 64)
     else:
         raise ValueError(f"Unknown cp_uimm coverpoint variant: {coverpoint} for {instr_name}")
 
