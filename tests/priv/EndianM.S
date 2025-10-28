@@ -8,6 +8,15 @@
 // SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
 ///////////////////////////////////////////
 
+##### START_TEST_CONFIG #####
+# implemented_extensions: ['I', 'Zicsr']
+# params:
+#   MXLEN: 32
+# MARCH: rv32i
+# CONFIG_DEPENDENT: false
+##### END_TEST_CONFIG #####
+
+
 #include "WALLY-init-lib.h"
 #include "priv-endian.h"
 main:
