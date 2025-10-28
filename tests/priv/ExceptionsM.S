@@ -10,11 +10,9 @@
 ///////////////////////////////////////////
 
 ##### START_TEST_CONFIG #####
-# implemented_extensions: ['I', 'Zicsr']
-# params:
-#   MXLEN: 32
-# MARCH: rv32i_zicsr
-# CONFIG_DEPENDENT: false
+# implemented_extensions: [I, Zicsr]
+# MARCH: rv${XLEN}i_zicsr
+# CONFIG_DEPENDENT: true
 ##### END_TEST_CONFIG #####
 
 #include "WALLY-init-lib.h"

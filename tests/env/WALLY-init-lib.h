@@ -77,7 +77,8 @@
 .global rvtest_entry_point
 
 rvtest_entry_point:
-    la sp, topofstack       # Initialize stack pointer (not used)
+    la sp, topofstack    # Initialize stack pointer (not used)
+    jal reset_mtimecmp   # disable timer interrupts by setting mtimecmp to 1s (needed for Sail; Spike defaults to resetting this way)
 
     # Set up interrupts
     la t0, trap_handler
