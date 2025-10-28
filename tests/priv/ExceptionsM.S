@@ -9,6 +9,14 @@
 // SPDX-License-Identifier: Apache-2.0
 ///////////////////////////////////////////
 
+##### START_TEST_CONFIG #####
+# implemented_extensions: ['I', 'Zicsr']
+# params:
+#   MXLEN: 32
+# MARCH: rv32i_zicsr
+# CONFIG_DEPENDENT: false
+##### END_TEST_CONFIG #####
+
 #include "WALLY-init-lib.h"
 
 main:
