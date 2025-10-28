@@ -2,11 +2,11 @@
 # immediates.py
 #
 # jcarlin@hmc.edu 5 Oct 2025
-# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+# SPDX-License-Identifier: Apache-2.0
 ##################################
 
 """
-Immediate value formatting for cvw-arch-verif test generation.
+Immediate value formatting for riscv-arch-test test generation.
 """
 
 from random import randint

@@ -3,7 +3,7 @@
 # csrtests.py
 #
 # David_Harris@hmc.edu 13 October 2024
-# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+# SPDX-License-Identifier: Apache-2.0
 #
 # Emit tests of all 4096 CSRs for Zicsr functional coverage tests
 ##################################

@@ -1,4 +1,10 @@
-# testgen/coverpoints/coverpoints.py
+##################################
+# coverpoints.py
+#
+# jcarlin@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
+
 """Coverpoint generator registry with automatic discovery."""
 
 from collections.abc import Callable

@@ -5,7 +5,7 @@
 //
 // Purpose: Functional coverage test for Exceptions from the Zaamo Extension
 //
-// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+// SPDX-License-Identifier: Apache-2.0
 ///////////////////////////////////////////
 
 #include "WALLY-init-lib.h"

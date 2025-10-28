@@ -1,3 +1,8 @@
+# test_setup.h
+# Main riscv-arch-test test macros
+# Jordan Carlin jcarlin@hmc.edu October 2025
+# SPDX-License-Identifier: BSD-3-Clause
+
 /*************************************** RVTEST_BEGIN **************************************/
 /**** RVTEST_BEGIN sets up the test environment and is run before the actual test code. ****/
 /**** - sets up main entry point labels                                                 ****/

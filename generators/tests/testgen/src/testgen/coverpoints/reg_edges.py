@@ -1,4 +1,10 @@
-# testgen/coverpoints/reg_edges.py
+##################################
+# reg_edges.py
+#
+# jcarlin@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
+
 """Register edge value coverpoint generators (cp_rs1_edges, cp_rs2_edges)."""
 
 from testgen.coverpoints.coverpoints import add_coverpoint_generator

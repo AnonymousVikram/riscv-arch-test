@@ -1,4 +1,10 @@
-# testgen/coverpoints/register.py
+##################################
+# register.py
+#
+# jcarlin@hmc.edu Oct 2025
+# SPDX-License-Identifier: Apache-2.0
+##################################
+
 """Register coverpoint handlers (cp_rd, cp_rs1, cp_rs2)."""
 
 from testgen.coverpoints.coverpoints import add_coverpoint_generator

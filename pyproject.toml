@@ -1,3 +1,8 @@
+# pyproject.toml
+# Top-level python project configuration file for riscv-arch-test
+# Jordan Carlin jcarlin@hmc.edu October 2025
+# SPDX-License-Identifier: Apache-2.0
+
 [tool.uv.workspace]
 members = ["framework", "generators/tests/testgen"]
 
