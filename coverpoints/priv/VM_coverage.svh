@@ -12,7 +12,7 @@
 `define SVNAPOT_SUPPORTED
 covergroup VM_satp_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     `ifdef XLEN64
         mode_supported: coverpoint ins.current.csr[12'h180][63:60] { //sat.2
@@ -218,7 +218,7 @@ endgroup
 
 covergroup VM_mstatus_mprv_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     tvm_mstatus: coverpoint ins.current.csr[12'h300][20] {
         bins set = {1};
@@ -383,7 +383,7 @@ endgroup
 
 covergroup VM_vm_permissions_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     //pte permission for leaf PTEs
     PTE_i_inv: coverpoint ins.current.pte_i[7:0] { //pte.2
