@@ -11,7 +11,7 @@
 `define COVER_SVNAPOT
 covergroup Svnapot_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     PTE_N_i: coverpoint ins.current.pte_i[63] {
         bins pte_N_set = {1'b1};

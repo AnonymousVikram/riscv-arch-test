@@ -11,7 +11,7 @@
 `define COVER_SVADE
 covergroup Svade_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     PTE_Abit_unset_s_i: coverpoint ins.current.pte_i[7:0] {
         wildcard bins leaflvl_s = {8'b?0?01111};
@@ -88,7 +88,7 @@ covergroup Svade_cg with function sample(ins_t ins);
     store_page_fault: coverpoint  ins.current.csr[12'h342][31:0] {
         bins store_amo_page_fault = {32'd15} iff (ins.current.trap);
     }
-    
+
     `ifdef XLEN64
         Svade_enabled: coverpoint  ins.current.csr[12'h30A][61] {
             bins ADUE_unset = {1'b0};

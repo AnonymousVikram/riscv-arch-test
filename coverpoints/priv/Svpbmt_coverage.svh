@@ -11,7 +11,7 @@
 `define COVER_SVPBMT
 covergroup Svpbmt_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     nonleaf_PTE_pbmt_i: coverpoint ins.current.pte_i[7:0] {
         wildcard bins pbmt_1 = {8'b00?00001} iff (ins.current.pte_i[62:61] == 2'b01);

@@ -11,7 +11,7 @@
 `define COVER_SVADU
 covergroup Svadu_cg with function sample(ins_t ins);
     option.per_instance = 0;
-    `include  "coverage/RISCV_coverage_standard_coverpoints.svh"
+    `include  "general/RISCV_coverage_standard_coverpoints.svh"
 
     PTE_Abit_unset_s_i: coverpoint ins.current.pte_i[7:0] {
         wildcard bins leaflvl_s = {8'b?0?01111};
